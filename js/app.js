@@ -68,4 +68,4 @@ const inputText = () => {
   container.innerHTML += new Text().createText();
 };
 //--------------------------------------
-// Button Event
+// Button Event Function
