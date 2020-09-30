@@ -1,5 +1,6 @@
 import { Button, Text } from './classes.js';
 
+//variable declaration
 let content = null;
 let container = null;
 let btn = null;
@@ -8,16 +9,17 @@ let txtInput = null;
 let tmpOperation = null;
 let valor1, valor2;
 
+//Events ---------------------------
 window.addEventListener('load', () => {
   console.log('Evento carregado!');
   content = document.getElementById('content');
-  criarContainer();
+  createContainer();
   container = document.getElementById('container');
 
   //text box
   inputText();
   //button creation
-  criarBtn();
+  createBtn();
   operations();
   //event listeners
   btn = document.querySelector('.calcBtn');
@@ -32,7 +34,7 @@ window.addEventListener('load', () => {
   });
 
   btnOperation.addEventListener('click', (event) => {
-    const calcula = (a, b) => {
+    const calculate = (a, b) => {
       let result = null;
       if (tmpOperation === '/') {
         result = a / b;
@@ -61,21 +63,22 @@ window.addEventListener('load', () => {
     } else if (event.target.value === '=') {
       valor2 = parseInt(txtInput.textContent);
 
-      txtInput.textContent = calcula(valor1, valor2);
+      txtInput.textContent = calculate(valor1, valor2);
       valor1 = null;
       valor2 = null;
       tmpOperation = null;
     }
   });
 });
-
+//--------------------------------------------
 //Creation of contents-------------------
-const criarContainer = () => {
+
+const createContainer = () => {
   let div = '<div id="container"></div>';
   content.innerHTML += div;
 };
 
-const criarBtn = () => {
+const createBtn = () => {
   let divBtn = `
   <div class="calcBtn">
   `;
@@ -103,4 +106,3 @@ const inputText = () => {
   container.innerHTML += new Text().createText();
 };
 //--------------------------------------
-// Button Event Function
