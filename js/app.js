@@ -27,10 +27,12 @@ window.addEventListener('load', () => {
   txtInput = document.querySelector('.txtInput');
 
   btn.addEventListener('click', (event) => {
-    console.log(event);
-
     let value = event.target.value;
-    txtInput.textContent += value;
+    if (txtInput.textContent.length === 17) {
+      alert('STOP RIGHT NOW');
+    } else {
+      txtInput.textContent += value;
+    }
   });
 
   btnOperation.addEventListener('click', (event) => {
