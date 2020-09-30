@@ -5,6 +5,8 @@ let container = null;
 let btn = null;
 let btnOperation = null;
 let txtInput = null;
+let tmpOperation = null;
+let valor1, valor2;
 
 window.addEventListener('load', () => {
   console.log('Evento carregado!');
@@ -23,13 +25,46 @@ window.addEventListener('load', () => {
   txtInput = document.querySelector('.txtInput');
 
   btn.addEventListener('click', (event) => {
+    console.log(event);
+
     let value = event.target.value;
     txtInput.textContent += value;
   });
 
   btnOperation.addEventListener('click', (event) => {
+    const calcula = (a, b) => {
+      let result = null;
+      if (tmpOperation === '/') {
+        result = a / b;
+      } else if (tmpOperation === '*') {
+        result = a * b;
+      } else if (tmpOperation === '-') {
+        result = a - b;
+      } else if (tmpOperation === '+') {
+        result = a + b;
+      }
+
+      return result;
+    };
+
     if (event.target.value === 'C') {
       txtInput.textContent = '';
+    } else if (
+      event.target.value === '/' ||
+      event.target.value === '*' ||
+      event.target.value === '-' ||
+      event.target.value === '+'
+    ) {
+      tmpOperation = event.target.value;
+      valor1 = parseInt(txtInput.textContent);
+      txtInput.textContent = '';
+    } else if (event.target.value === '=') {
+      valor2 = parseInt(txtInput.textContent);
+
+      txtInput.textContent = calcula(valor1, valor2);
+      valor1 = null;
+      valor2 = null;
+      tmpOperation = null;
     }
   });
 });
